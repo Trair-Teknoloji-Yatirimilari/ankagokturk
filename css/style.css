@@ -1,88 +1,105 @@
-/* Anka Göktürk — site stili */
+/* Anka Göktürk — orijinal Wix tasarımına uyarlanmış stil */
 :root{
-  --bg:#faf7f2; --panel:#f1ece2; --ink:#2e2a26; --muted:#6f675d;
-  --accent:#5c7268; --accent-dark:#41544c; --line:#e2dacc;
+  --green:#3f4b3a; --green-dark:#2f3a2c;
+  --cream:#f6f2e7; --cream-dim:#d9d3c2; --panel:#ece6d7;
+  --ink:#2e332a; --muted:#6c7263; --salmon:#eec3b2; --line:#ddd5c4;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Inter','Segoe UI',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+body{font-family:'Inter','Segoe UI',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7}
 h1,h2,h3,.brand{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.2}
-h1{font-size:2.6rem;margin-bottom:.6em}
-h2{font-size:1.9rem;margin:1.6em 0 .5em;color:var(--accent-dark)}
+h1{font-size:2.6rem;margin-bottom:.6em;color:var(--green-dark)}
+h2{font-size:1.9rem;margin:1.6em 0 .5em;color:var(--green)}
 h3{font-size:1.3rem;margin:1.2em 0 .4em}
 p{margin-bottom:1em}
-a{color:var(--accent-dark)}
+a{color:var(--green)}
 img{max-width:100%;display:block;border-radius:10px}
 .container{max-width:1040px;margin:0 auto;padding:0 22px}
 
-/* Header */
-header{background:var(--bg);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
-.nav-wrap{display:flex;align-items:center;justify-content:space-between;max-width:1180px;margin:0 auto;padding:14px 22px}
-.brand{font-size:1.45rem;text-decoration:none;color:var(--ink)}
-.brand span{color:var(--accent)}
-nav ul{list-style:none;display:flex;gap:22px;align-items:center}
-nav a{text-decoration:none;color:var(--ink);font-size:.92rem}
-nav a:hover{color:var(--accent)}
+/* Header — koyu yeşil, ortalanmış logo, krem serif menü */
+header{background:var(--green)}
+.nav-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;
+  max-width:1280px;margin:0 auto;padding:26px 22px 18px;position:relative}
+.brand{font-size:2.1rem;font-weight:500;text-decoration:none;color:var(--cream);
+  text-transform:uppercase;letter-spacing:.38em;text-align:center;padding-left:.38em}
+.brand span{color:var(--cream)}
+.brand::after{content:"Breath & Art";display:block;font-size:.58rem;font-family:'Inter',sans-serif;
+  letter-spacing:.55em;color:var(--salmon);margin-top:7px;text-transform:uppercase;padding-left:.55em}
+nav ul{list-style:none;display:flex;gap:26px;align-items:center;justify-content:center;flex-wrap:wrap}
+nav a,.dropdown>span{text-decoration:none;color:var(--cream);
+  font-family:'Cormorant Garamond',Georgia,serif;font-size:1.08rem;letter-spacing:.06em}
+nav a:hover{color:var(--salmon)}
 .dropdown{position:relative}
-.dropdown>span{cursor:default;font-size:.92rem}
-.dropdown ul{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-width:230px;flex-direction:column;gap:8px;box-shadow:0 6px 18px rgba(0,0,0,.07)}
+.dropdown>span{cursor:default}
+.dropdown ul{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  background:var(--green-dark);border:1px solid #263023;border-radius:8px;padding:12px 16px;
+  min-width:240px;flex-direction:column;gap:9px;box-shadow:0 8px 22px rgba(0,0,0,.25);z-index:60}
 .dropdown:hover ul{display:flex}
+.dropdown ul a{font-size:1rem}
 #nav-toggle{display:none}
-.hamburger{display:none;font-size:1.6rem;cursor:pointer;user-select:none}
+.hamburger{display:none;font-size:1.7rem;cursor:pointer;user-select:none;color:var(--cream);
+  position:absolute;right:22px;top:26px}
 @media(max-width:900px){
   .hamburger{display:block}
+  .brand{font-size:1.5rem}
   nav{display:none;width:100%}
   #nav-toggle:checked ~ nav{display:block}
-  nav ul{flex-direction:column;align-items:flex-start;gap:12px;padding:14px 0}
-  .dropdown ul{display:flex;position:static;border:none;box-shadow:none;padding:6px 0 0 16px}
-  .nav-wrap{flex-wrap:wrap}
+  nav ul{flex-direction:column;align-items:center;gap:14px;padding:14px 0}
+  .dropdown ul{display:flex;position:static;transform:none;border:none;box-shadow:none;
+    background:transparent;padding:6px 0 0;align-items:center}
 }
 
-/* Hero */
-.hero{background:linear-gradient(160deg,var(--panel),var(--bg));padding:90px 0;text-align:center}
-.hero h1{font-size:3rem}
-.hero p{max-width:640px;margin:0 auto 1.6em;color:var(--muted);font-size:1.08rem}
-.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;
-  padding:12px 30px;border-radius:999px;font-size:.95rem;transition:background .2s}
-.btn:hover{background:var(--accent-dark)}
-.btn.ghost{background:transparent;color:var(--accent-dark);border:1px solid var(--accent)}
+/* Hero — orijinaldeki duvar resmi üzerinde koyu yeşil başlık */
+.hero{background:url("https://static.wixstatic.com/media/a58329_e8de7f4bba3e42fa9cc6564144192e2b~mv2.png/v1/fit/w_2500,h_1330,al_c/a58329_e8de7f4bba3e42fa9cc6564144192e2b~mv2.png") center/cover no-repeat;
+  min-height:72vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:110px 0}
+.hero h1{font-family:'Poppins','Inter',sans-serif;font-weight:600;font-size:3.4rem;
+  color:var(--green-dark);margin-bottom:.4em}
+.hero p{max-width:640px;margin:0 auto 1.6em;color:var(--green-dark);font-weight:500;font-size:1.1rem}
+@media(max-width:700px){.hero h1{font-size:2.2rem}.hero{min-height:54vh;padding:70px 0}}
 
-/* Sections */
+/* Butonlar */
+.btn{display:inline-block;background:var(--green);color:var(--cream);text-decoration:none;
+  padding:12px 32px;border-radius:999px;font-size:.95rem;letter-spacing:.03em;transition:background .2s}
+.btn:hover{background:var(--green-dark)}
+.btn.ghost{background:transparent;color:var(--green);border:1px solid var(--green)}
+
+/* Bölümler */
 section{padding:46px 0}
 section.alt{background:var(--panel)}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;margin:1.4em 0}
-.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px}
-.card h3{margin-top:0;color:var(--accent-dark)}
+.card{background:#fffdf7;border:1px solid var(--line);border-radius:12px;padding:24px}
+.card h3{margin-top:0;color:var(--green)}
 .card p{color:var(--muted);font-size:.94rem;margin:0}
 .lead{font-size:1.06rem;color:var(--muted)}
-.quote{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;
-  text-align:center;max-width:620px;margin:0 auto;color:var(--accent-dark)}
+.quote{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;
+  text-align:center;max-width:620px;margin:0 auto;color:var(--green)}
 .quote small{display:block;font-family:'Inter',sans-serif;font-size:.85rem;font-style:normal;color:var(--muted);margin-top:10px}
 
-/* Trainers */
+/* Eğitmenler */
 .people{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:26px;margin-top:1.4em}
-.person{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px}
+.person{background:#fffdf7;border:1px solid var(--line);border-radius:12px;padding:22px}
 .person img{width:130px;height:130px;object-fit:cover;border-radius:50%;margin-bottom:14px}
-.person .role{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin-bottom:2px}
+.person .role{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--green);margin-bottom:2px}
 .person h3{margin:0 0 .5em}
 .person p{font-size:.88rem;color:var(--muted);margin:0}
 
-/* Steps */
+/* Adımlar */
 .steps{counter-reset:step;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin:1.2em 0}
-.step{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px}
+.step{background:#fffdf7;border:1px solid var(--line);border-radius:12px;padding:22px}
 .step::before{counter-increment:step;content:"0" counter(step);
-  font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--accent);display:block;margin-bottom:6px}
+  font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--salmon);display:block;margin-bottom:6px}
 
 /* CTA */
-.cta{background:var(--accent-dark);color:#fff;text-align:center;padding:60px 22px;border-radius:16px;margin:50px auto;max-width:1040px}
-.cta h2{color:#fff;margin-top:0}
-.cta .btn{background:#fff;color:var(--accent-dark)}
+.cta{background:var(--green);color:var(--cream);text-align:center;padding:60px 22px;border-radius:16px;margin:50px auto;max-width:1040px}
+.cta h2{color:var(--cream);margin-top:0}
+.cta .btn{background:var(--salmon);color:var(--green-dark)}
+.cta .btn:hover{background:#e3ae99}
 
-/* Footer */
-footer{background:var(--panel);border-top:1px solid var(--line);margin-top:60px;padding:46px 0;font-size:.9rem;color:var(--muted)}
+/* Footer — koyu yeşil */
+footer{background:var(--green);color:var(--cream-dim);margin-top:60px;padding:50px 0 40px;font-size:.9rem}
 .foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px}
-footer h3{margin-top:0;font-size:1.1rem;color:var(--ink)}
-footer a{color:var(--accent-dark)}
-.copy{text-align:center;margin-top:34px;font-size:.8rem}
+footer h3{margin-top:0;font-size:1.15rem;color:var(--cream)}
+footer a{color:var(--salmon)}
+.copy{text-align:center;margin-top:36px;font-size:.8rem;color:var(--cream-dim)}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
 @media(max-width:800px){.two-col{grid-template-columns:1fr}}
