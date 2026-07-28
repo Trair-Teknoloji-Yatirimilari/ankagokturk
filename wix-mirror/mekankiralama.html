@@ -2134,5 +2134,117 @@ bottom: calc((60px / -2) - 0px);
 
 
 
-</body>
+<style>
+.tx-dd{display:none;position:absolute;top:100%;left:0;background:#e9e7de;padding:18px 26px;
+flex-direction:column;gap:14px;min-width:280px;box-shadow:0 6px 16px rgba(0,0,0,.18);z-index:9999}
+.tx-dd a{color:#3f4b3a;text-decoration:none;font-size:17px;white-space:nowrap;font-family:inherit}
+.tx-dd a:hover{color:#b98e7e}
+</style>
+<script>
+(function(){
+var M={"Anka G\u00f6kt\u00fcrk":[["Hakk\u0131m\u0131zda","/hakk\u0131m\u0131zda.html"],["E\u011fitmenler","/kopyas\u0131-hakk\u0131m\u0131zda.html"]],
+"Transformal Nefes":[["Transformal Nefes Nedir?","/kopyas\u0131-transformal-nefes.html"],["Transformal Nefes Bireysel Seans","/transformal-nefes-bireysel-seans.html"],["Transformal Nefes Grup Seans\u0131","/tranformal-nefes-grup-seansi.html"],["Transformal Nefes Workshop","/transformal-nefes-workshop.html"]]};
+Object.keys(M).forEach(function(label){
+  var el=Array.prototype.find.call(document.querySelectorAll("a,span"),function(e){
+    return e.textContent.trim()===label && !e.closest(".tx-dd");});
+  if(!el)return;
+  var host=el.closest("li")||el.parentElement;
+  host.style.position="relative";
+  var dd=document.createElement("div");dd.className="tx-dd";
+  M[label].forEach(function(it){var a=document.createElement("a");a.textContent=it[0];a.href=it[1];dd.appendChild(a);});
+  host.appendChild(dd);
+  host.addEventListener("mouseenter",function(){dd.style.display="flex"});
+  host.addEventListener("mouseleave",function(){dd.style.display="none"});
+});
+})();
+</script><style id="tx-rev1">
+.tx-past{max-width:1100px;margin:40px auto 60px;padding:0 22px}
+.tx-past h2{font-size:1.8rem;color:#3f4b3a;margin-bottom:20px}
+.tx-past-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.tx-pc{background:#fff;border:1px solid #ddd5c4;border-radius:12px;overflow:hidden;opacity:.85}
+.tx-pc img{width:100%;height:140px;object-fit:cover;display:block}
+.tx-pc div{padding:12px 14px}
+.tx-pc b{display:block;color:#3f4b3a;font-size:.95rem;margin-bottom:4px}
+.tx-pc span{color:#8a8676;font-size:.8rem}
+.tx-map{max-width:1100px;margin:40px auto 60px;padding:0 22px}
+.tx-map iframe{width:100%;height:420px;border:0;border-radius:12px}
+</style>
+<script>
+(function(){try{
+var P=decodeURIComponent(location.pathname);
+/* 1) Kaldirilan egitmenler */
+var GONE=["M\u00fcge Becer","Hande Seren","\u0130nci Kasapo\u011flu","Soley Akta\u015f"];
+document.querySelectorAll("[id*=\"__item\"], li").forEach(function(it){
+  var t=it.textContent||"";
+  if(t.length<3000 && it.querySelector("img") && GONE.some(function(n){return t.indexOf(n)>-1})){
+    it.style.display="none";
+  }
+});
+/* 2) Etkinlikleri Gecmis Etkinlikler bolumune tasi */
+var cards=[],seen=[];
+document.querySelectorAll("a[href*=\"detaylar-ve-kay-t\"]").forEach(function(a){
+  var c=a.closest("[id*=\"__item\"]")||a.closest("li");
+  if(!c||seen.indexOf(c)>-1)return;
+  seen.push(c);
+  var img=c.querySelector("img");
+  var name="";
+  c.querySelectorAll("a").forEach(function(x){
+    var tx=x.textContent.trim();
+    if(!name&&tx.length>3&&tx!=="Bilgiler"&&tx.indexOf("Daha Fazla")<0)name=tx;
+  });
+  var dm=(c.textContent||"").match(/\d{1,2} (Oca|\u015eub|Mar|Nis|May|Haz|Tem|A\u011fu|Eyl|Eki|Kas|Ara)[^ ]*/);
+  cards.push({img:img?img.src:"",name:name||"Etkinlik",date:dm?dm[0]:""});
+  c.style.display="none";
+});
+if(cards.length&&P.indexOf("etkinlik")>-1){
+  var s=document.createElement("section");s.className="tx-past";
+  var h="<h2>Ge\u00e7mi\u015f Etkinlikler</h2><div class=\"tx-past-grid\">";
+  cards.forEach(function(k){
+    h+="<div class=\"tx-pc\">"+(k.img?"<img src=\""+k.img+"\">":"")+
+       "<div><b>"+k.name+"</b><span>"+k.date+(k.date?" \u2022 ":"")+"Anka G\u00f6kt\u00fcrk</span></div></div>";
+  });
+  s.innerHTML=h+"</div>";
+  var f=document.querySelector("#SITE_FOOTER");
+  var pc=document.querySelector("#PAGES_CONTAINER");if(pc)pc.appendChild(s);else if(f)f.parentNode.insertBefore(s,f);else document.body.appendChild(s);
+}
+/* 3) Mekan: toplanti salonu kiralama widgetini kaldir */
+if(P.indexOf("mekankiralama")>-1){
+  var KILL=["Toplant\u0131 Odas\u0131 Kiralama","Hemen Yer Ay\u0131rt","Hizmetinizi zamanlay\u0131n",
+    "\u20ba555","Planlar\u0131 Ke\u015ffet","Hizmet Bilgileri","M\u00fcsaitlik durumumuzu"];
+  document.querySelectorAll("body *").forEach(function(el){
+    if(el.children.length)return;
+    var t=(el.textContent||"").trim();
+    if(t&&KILL.some(function(k){return t.indexOf(k)>-1})){
+      var c=el.closest("[id^=\"comp-\"]");
+      if(c&&c.offsetHeight<700)c.style.display="none";else el.style.display="none";
+    }
+  });
+}
+/* 4) Iletisim: Google Haritalar */
+if(P.indexOf("i-let")>-1){
+  var m=document.createElement("section");m.className="tx-map";
+  m.innerHTML="<iframe loading=\"lazy\" src=\"https://www.google.com/maps?q=G%C3%B6kt%C3%BCrk+Merkez+Mahallesi+%C3%87am+G%C3%BCzeli+Sokak+Ormanc%C4%B1+Apartman%C4%B1+No:4+G%C3%B6kt%C3%BCrk+%C4%B0stanbul&output=embed\"></iframe>";
+  var f2=document.querySelector("#SITE_FOOTER");
+  var pc2=document.querySelector("#PAGES_CONTAINER");if(pc2)pc2.appendChild(m);else if(f2)f2.parentNode.insertBefore(m,f2);else document.body.appendChild(m);
+}
+}catch(e){}})();
+</script><script id="tx-rev2">
+(function(){try{
+var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),n,list=[];
+while(n=w.nextNode())if(n.nodeValue.indexOf("\u00c7ar\u015famba")>-1)list.push(n);
+list.forEach(function(t){
+  var blok=t.parentElement?t.parentElement.closest("h1,h2,h3,p,div,span"):null;
+  var ctx=blok?blok.textContent:"";
+  if(ctx.indexOf("19:00")>-1||/her\s*\u00c7ar\u015famba/i.test(ctx)){
+    t.nodeValue=t.nodeValue.replace(/\u00c7ar\u015famba/g,"Per\u015fembe");
+  }
+});
+}catch(e){}})();
+</script><style id="tx-rev3">
+.tx-past{width:min(1100px,94vw)!important;margin:50px auto!important;background:#f6f2e7;
+border-radius:16px;padding:34px 30px!important;box-sizing:border-box;position:relative;z-index:5}
+.tx-past h2{color:#3f4b3a!important;text-align:center;margin:0 0 24px!important;font-size:1.7rem}
+.tx-past-grid{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))!important;gap:18px!important}
+.tx-map{width:min(1100px,94vw)!important;margin:50px auto!important;position:relative;z-index:5}
+</style></body>
 </html>
