@@ -4438,5 +4438,48 @@ border-radius:16px;padding:34px 30px!important;box-sizing:border-box;position:re
 .tx-past h2{color:#3f4b3a!important;text-align:center;margin:0 0 24px!important;font-size:1.7rem}
 .tx-past-grid{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))!important;gap:18px!important}
 .tx-map{width:min(1100px,94vw)!important;margin:50px auto!important;position:relative;z-index:5}
-</style></body>
+</style><script id="tx-rev4">
+(function(){try{
+var P=decodeURIComponent(location.pathname);
+if(P.indexOf("etkinlik")<0)return;
+if(document.querySelector(".tx-past .tx-pc"))return;
+var SRC=["index.html","tranformal-nefes-grup-seansi.html","toplant\u0131-organizasyon.html","kopyas\u0131-sanat.html","sanat.html"];
+Promise.all(SRC.map(function(u){return fetch(u).then(function(r){return r.text()}).catch(function(){return ""})}))
+.then(function(docs){
+  var cards=[],keys={};
+  docs.forEach(function(html){
+    if(!html)return;
+    var doc=new DOMParser().parseFromString(html,"text/html");
+    var seen=[];
+    doc.querySelectorAll("a[href*=\"detaylar-ve-kay-t\"]").forEach(function(a){
+      var c=a.closest("[id*=\"__item\"]")||a.closest("li");
+      if(!c||seen.indexOf(c)>-1)return;
+      seen.push(c);
+      var img=c.querySelector("img");
+      var name="";
+      c.querySelectorAll("a").forEach(function(x){
+        var tx=x.textContent.trim();
+        if(!name&&tx.length>3&&tx!=="Bilgiler"&&tx.indexOf("Daha Fazla")<0)name=tx;
+      });
+      var dm=(c.textContent||"").match(/\d{1,2} (Oca|\u015eub|Mar|Nis|May|Haz|Tem|A\u011fu|Eyl|Eki|Kas|Ara)[^ ]*/);
+      var k=name+"|"+(dm?dm[0]:"");
+      if(!name||keys[k])return;
+      keys[k]=1;
+      cards.push({img:img?img.getAttribute("src"):"",name:name,date:dm?dm[0]:""});
+    });
+  });
+  if(!cards.length)return;
+  var old=document.querySelector(".tx-past");if(old)old.remove();
+  var s=document.createElement("section");s.className="tx-past";
+  var h="<h2>Ge\u00e7mi\u015f Etkinlikler</h2><div class=\"tx-past-grid\">";
+  cards.forEach(function(k){
+    h+="<div class=\"tx-pc\">"+(k.img?"<img src=\""+k.img+"\">":"")+
+       "<div><b>"+k.name+"</b><span>"+k.date+(k.date?" \u2022 ":"")+"Anka G\u00f6kt\u00fcrk</span></div></div>";
+  });
+  s.innerHTML=h+"</div>";
+  var pc=document.querySelector("#PAGES_CONTAINER");
+  if(pc)pc.appendChild(s);else document.body.appendChild(s);
+});
+}catch(e){}})();
+</script></body>
 </html>
