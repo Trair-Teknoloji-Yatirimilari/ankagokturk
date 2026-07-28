@@ -4438,48 +4438,5 @@ border-radius:16px;padding:34px 30px!important;box-sizing:border-box;position:re
 .tx-past h2{color:#3f4b3a!important;text-align:center;margin:0 0 24px!important;font-size:1.7rem}
 .tx-past-grid{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))!important;gap:18px!important}
 .tx-map{width:min(1100px,94vw)!important;margin:50px auto!important;position:relative;z-index:5}
-</style><script id="tx-rev4">
-(function(){try{
-var P=decodeURIComponent(location.pathname);
-if(P.indexOf("etkinlik")<0)return;
-if(document.querySelector(".tx-past .tx-pc"))return;
-var SRC=["index.html","tranformal-nefes-grup-seansi.html","toplant\u0131-organizasyon.html","kopyas\u0131-sanat.html","sanat.html"];
-Promise.all(SRC.map(function(u){return fetch(u).then(function(r){return r.text()}).catch(function(){return ""})}))
-.then(function(docs){
-  var cards=[],keys={};
-  docs.forEach(function(html){
-    if(!html)return;
-    var doc=new DOMParser().parseFromString(html,"text/html");
-    var seen=[];
-    doc.querySelectorAll("a[href*=\"detaylar-ve-kay-t\"]").forEach(function(a){
-      var c=a.closest("[id*=\"__item\"]")||a.closest("li");
-      if(!c||seen.indexOf(c)>-1)return;
-      seen.push(c);
-      var img=c.querySelector("img");
-      var name="";
-      c.querySelectorAll("a").forEach(function(x){
-        var tx=x.textContent.trim();
-        if(!name&&tx.length>3&&tx!=="Bilgiler"&&tx.indexOf("Daha Fazla")<0)name=tx;
-      });
-      var dm=(c.textContent||"").match(/\d{1,2} (Oca|\u015eub|Mar|Nis|May|Haz|Tem|A\u011fu|Eyl|Eki|Kas|Ara)[^ ]*/);
-      var k=name+"|"+(dm?dm[0]:"");
-      if(!name||keys[k])return;
-      keys[k]=1;
-      cards.push({img:img?img.getAttribute("src"):"",name:name,date:dm?dm[0]:""});
-    });
-  });
-  if(!cards.length)return;
-  var old=document.querySelector(".tx-past");if(old)old.remove();
-  var s=document.createElement("section");s.className="tx-past";
-  var h="<h2>Ge\u00e7mi\u015f Etkinlikler</h2><div class=\"tx-past-grid\">";
-  cards.forEach(function(k){
-    h+="<div class=\"tx-pc\">"+(k.img?"<img src=\""+k.img+"\">":"")+
-       "<div><b>"+k.name+"</b><span>"+k.date+(k.date?" \u2022 ":"")+"Anka G\u00f6kt\u00fcrk</span></div></div>";
-  });
-  s.innerHTML=h+"</div>";
-  var pc=document.querySelector("#PAGES_CONTAINER");
-  if(pc)pc.appendChild(s);else document.body.appendChild(s);
-});
-}catch(e){}})();
-</script></body>
+</style><section id="tx-static-past" class="tx-past"><h2>Geçmiş Etkinlikler</h2><div class="tx-past-grid"><div class="tx-pc"><img src="assets-yerel/1587c803706c5d59.jpeg"><div><b>Nefes Balık Ayvalık Kampı</b><span>16 May • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/47ad27647cd1da21.png"><div><b>Anka Göktürk x Deyim Sanat</b><span>24 Tem • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/1fbf1b1906909d18.png"><div><b>Mala Tasarım Atölyesi</b><span>01 Şub • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/d32fbae576b02050.png"><div><b>Dolunay Meditasyonu</b><span>14 Oca • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/0d96f5c652eaaf0c.jpg"><div><b>Hatha Yoga Başlangıç Seviye</b><span>14 Kas • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/09a2030b114d8504.jpg"><div><b>Transformal Nefes® Grup Seansı</b><span>13 Kas • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/9db3dfe665554c4d.jpg"><div><b>Çocuk Temel Hareket Egzersizleri</b><span>12 Kas • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/470815be22558d8d.jpg"><div><b>Aile Dizimi</b><span>06 Eki • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/09a2030b114d8504.jpg"><div><b>Transformal Nefes® Grup Seansı</b><span>02 Eki • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/02a1786a86914590.jpg"><div><b>Hatha Yoga Başlangıç Seviye &amp; Nefes &amp; Meditasyon Pratikleri</b><span>23 Eyl • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/f8b9edb19e20c966.png"><div><b>Transformal Nefes® Grup Seansı</b><span>19 Eyl • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/5e2ce80d85f7a851.jpg"><div><b>Çocuk- Temel Hareket Egzersizleri (6-9 yaş)</b><span>19 Eyl • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/708817f01e807748.jpg"><div><b>Çocuk- Temel Hareket Egzersizleri (3-5 yaş)</b><span>19 Eyl • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/f61b1812c3f5373f.jpg"><div><b>Çocuk Yoga</b><span>18 Eyl • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/c8887353718aae13.jpg"><div><b>Hatha Yoga Orta &amp; Nefes &amp; Meditasyon Pratikleri</b><span>18 Eyl • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/d86a60bffd394246.jpg"><div><b>Aile Dizimi</b><span>08 Eyl • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/380737c587f5d8e3.jpg"><div><b>Öze Yolculuk: Kendini ve Auranı Tanı</b><span>07 Eyl • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/d86a60bffd394246.jpg"><div><b>Aile Dizimi</b><span>01 Eyl • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/09a2030b114d8504.jpg"><div><b>Transformal Nefes® Grup Seansı</b><span>06 Kas • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/09a2030b114d8504.jpg"><div><b>Transformal Nefes® Grup Seansı</b><span>30 Eki • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/09a2030b114d8504.jpg"><div><b>Transformal Nefes® Grup Seansı</b><span>23 Eki • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/09a2030b114d8504.jpg"><div><b>Transformal Nefes® Grup Seansı</b><span>16 Eki • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/09a2030b114d8504.jpg"><div><b>Transformal Nefes® Grup Seansı</b><span>09 Eki • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/09a2030b114d8504.jpg"><div><b>Transformal Nefes® Grup Seansı</b><span>25 Eyl • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/f8b9edb19e20c966.png"><div><b>Transformal Nefes® Grup Seansı</b><span>17 Eyl • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/f8b9edb19e20c966.png"><div><b>Transformal Nefes® Grup Seansı</b><span>12 Eyl • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/f8b9edb19e20c966.png"><div><b>Transformal Nefes® Grup Seansı</b><span>10 Eyl • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/f8b9edb19e20c966.png"><div><b>Transformal Nefes® Grup Seansı</b><span>05 Eyl • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/f8b9edb19e20c966.png"><div><b>Transformal Nefes® Grup Seansı</b><span>03 Eyl • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/f8b9edb19e20c966.png"><div><b>Transformal Nefes® Grup Seansı</b><span>29 Ağu • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/f8b9edb19e20c966.png"><div><b>Tranformal Nefes Grup Seansı</b><span>27 Ağu • Anka Göktürk</span></div></div><div class="tx-pc"><img src="assets-yerel/f8b9edb19e20c966.png"><div><b>Tranformal Nefes Grup Seansı</b><span>22 Ağu • Anka Göktürk</span></div></div></div></section></body>
 </html>
